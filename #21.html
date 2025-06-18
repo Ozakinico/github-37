@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>レスポンシブ記事一覧</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+    h1 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    article {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 20px;
+      padding: 0 16px;
+      justify-content: center;
+    }
+    aside {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+      flex: 0 0 100%;
+      text-align: left;
+    }
+    .next-watch:hover {
+      background-color: #3698d9;
+    }
+    @media (min-width: 601px) {
+      aside {
+        flex: 0 0 calc((100% - 20px) / 2);
+      }
+    }
+    @media (min-width: 901px) {
+      article {
+        padding: 0;
+        justify-content: flex-start;
+      }
+      aside {
+        flex: 0 0 300px;
+      }
+    }
+    .thumbnail {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+    h2 {
+      font-size: 1.5em;
+      margin: 10px 0;
+    }
+    p {
+      font-size: 1em;
+      color: #555;
+    }
+    .next-watch {
+      background-color: #47b2d9;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+  </style>
+</head>
+<body>
+  <h1>記事一覧</h1>
+  <article>
+    <aside>
+      <img src="https://pbs.twimg.com/media/GpL0TvWa4AAQfTk?format=png&name=360x360"
+           class="thumbnail" alt="サムネイル画像">
+      <h2>記事１</h2>
+      <p>これは記事の簡単な説明です</p>
+      <button class="next-watch">続きを読む</button>
+    </aside>
+    <aside>
+      <img src="https://pbs.twimg.com/media/GpL0TvWa4AAQfTk?format=png&name=360x360"
+           class="thumbnail" alt="サムネイル画像">
+      <h2>記事２</h2>
+      <p>これは記事の簡単な説明です</p>
+      <button class="next-watch">続きを読む</button>
+    </aside>
+    <aside>
+      <img src="https://pbs.twimg.com/media/GpL0TvWa4AAQfTk?format=png&name=360x360"
+           class="thumbnail" alt="サムネイル画像">
+      <h2>記事３</h2>
+      <p>これは記事の簡単な説明です</p>
+      <button class="next-watch">続きを読む</button>
+    </aside>
+  </article>
+</body>
+</html>

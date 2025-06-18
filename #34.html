@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>カード作成</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f3f5f7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px;
+    }
+
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+      margin-bottom: 20px;
+      width: 300px;
+    }
+
+    input, button {
+      display: block;
+      width: 100%; /* form の幅に合わせる */
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 16px;
+      box-sizing: border-box; /* paddingを含めて幅を計算 */
+    }
+
+    button {
+      background: #4caf50;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .card {
+      display: none;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #ccc;
+      width: 300px;
+      text-align: center;
+    }
+
+    .card h2 {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="userForm">
+    <input type="text" name="name" placeholder="名前を入力" required />
+    <input type="number" name="age" placeholder="年齢を入力" required />
+    <input type="text" name="hobby" placeholder="趣味を入力" required />
+    <button type="submit">カードを作成</button>
+  </form>
+
+  <div class="card" id="userCard">
+    <h2 id="cardName"></h2>
+    <p id="cardAge"></p>
+    <p id="cardHobby"></p>
+  </div>
+
+  <script>
+    const form = document.getElementById("userForm");
+    const card = document.getElementById("userCard");
+    const nameEl = document.getElementById("cardName");
+    const ageEl = document.getElementById("cardAge");
+    const hobbyEl = document.getElementById("cardHobby");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const name = form.elements["name"].value;
+      const age = form.elements["age"].value;
+      const hobby = form.elements["hobby"].value;
+
+      nameEl.textContent = name;
+      ageEl.textContent = "年齢: " + age;
+      hobbyEl.textContent = "趣味: " + hobby;
+
+      card.style.display = "block";
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>クリーンなページ</title>
+  <style>
+    /* 全体リセット＆ボックスモデル統一 */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    /* ページ全体のベースカラー */
+    html, body {
+      background-color: #ffffff;
+      color: #000000;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 見出し h1 */
+    h1 {
+      font-weight: normal;    /* 太字を解除 */
+      font-size: 20px;
+      margin: 0;               /* 余白なし */
+    }
+
+    /* 段落 p */
+    p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin: 0;               /* 上下余白なし */
+    }
+
+    /* リスト ul */
+    ul {
+      list-style: none;        /* ● を消す */
+      margin: 0;
+      padding: 0;
+    }
+
+    /* リンク a */
+    a {
+      color: inherit;          /* 親要素の黒を継承 */
+      text-decoration: none;   /* 下線なし */
+    }
+  </style>
+</head>
+<body>
+  <h1>これは見出しです</h1>
+  <p>これは段落テキストです。</p>
+  <ul>
+    <li>りんご</li>
+    <li>みかん</li>
+  </ul>
+  <a href="#">リンクはこちら</a>
+</body>
+</html>

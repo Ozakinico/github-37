@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            .layout {
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .box {
+                  height: 180px;
+            }
+
+            .box1, .box2, .box3 {
+                  flex: 0 0 calc((100%) / 3);
+            }
+            .box1 {
+                background-color: aquamarine;
+            }
+            .box2 {
+                background-color: yellow;
+            }
+            .box3 {
+                background-color: pink;
+            }
+
+            .box4 {
+                flex: 0 0 100%;
+                background-color: lightblue;
+            }
+
+            .box5, .box6 {
+                flex: 0 0 calc((100%) / 2);
+            }
+            .box5 {
+                background-color: greenyellow;
+            }
+            .box6 {
+                background-color: burlywood;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="layout">
+            <div class="box box1">1</div>
+            <div class="box box2">2</div>
+            <div class="box box3">3</div>
+            <div class="box box4">4</div>
+            <div class="box box5">5</div>
+            <div class="box box6">6</div>
+        </div>
+    </body>
+</html>

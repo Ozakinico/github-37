@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ラジオボタン選択表示</title>
+  <style>
+    #form {
+      font-family: sans-serif;
+      padding: 1rem;
+      max-width: 320px;
+      margin: 2rem auto;
+      background: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    #label {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+    }
+    input[type="radio"] {
+      margin-right: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="form">
+    <p id="label">
+      選択されているものは
+      <span id="selectedLabel">ないです</span>
+      です
+    </p>
+
+    <label>
+      <input type="radio" name="gender" value="男性">
+      男性
+    </label>
+    <label>
+      <input type="radio" name="gender" value="女性">
+      女性
+    </label>
+    <label>
+      <input type="radio" name="gender" value="その他">
+      その他
+    </label>
+  </div>
+
+  <script>
+    const radios = document.querySelectorAll('input[name="gender"]');
+    const display = document.getElementById('selectedLabel');
+
+    // 選択状況を反映する関数
+    function updateSelection() {
+      const checked = document.querySelector('input[name="gender"]:checked');
+      if (checked) {
+        display.textContent = checked.value;
+      } else {
+        display.textContent = 'ない';
+      }
+    }
+
+    // ページ読み込み時と変更時に反映
+    window.addEventListener('DOMContentLoaded', updateSelection);
+    radios.forEach(radio => {
+      radio.addEventListener('change', updateSelection);
+    });
+  </script>
+
+</body>
+</html>

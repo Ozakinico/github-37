@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<h1 id="title">JavaScriptの勉強</h1>
+<p id="text">この内容をアラート表示させよう</p>
+
+<script>
+  const title = document.getElementById("title").textContent;
+  const text  = document.getElementById("text").textContent;
+
+  // タイトルと本文を改行で区切って1つのアラートに表示
+  alert(`${title}\n\n${text}`);
+</script>

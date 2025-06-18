@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>📚 私のおすすめの本３選</title>
+  <style>
+    /* リセット＆ボックスモデル */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Hiragino Kaku Gothic Pro", Meiryo, sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 0;
+    }
+
+    header {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem 0;
+      width: 1200px;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+    header h1 {
+      font-size: 1.8rem;
+    }
+
+    main {
+      width: 1200px;
+    }
+
+    .book-list {
+      display: flex;
+      gap: 2rem;
+      /* 3冊を横並び */
+    }
+
+    article {
+    /* 全体幅 1200px から gap（2rem×2 = 32px）を引いて 3 等分 = 389px弱 */
+        width: 380px;     /* 好みで調整してください */
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: transform .2s;
+        cursor: pointer;
+    }
+    article:hover {
+      transform: translateY(-4px);
+    }
+
+    figure {
+      margin: 0;
+      flex-shrink: 0;
+    }
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .content {
+      padding: 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .content h2 {
+      font-size: 1.1rem;
+      margin-bottom: .4rem;
+    }
+    .content h2 span {
+      display: block;
+      font-size: .9rem;
+      color: #666;
+      margin-top: .2rem;
+    }
+    .content p {
+      flex: 1;
+      font-size: .95rem;
+      color: #444;
+    }
+
+    aside.memo {
+      background: #fffbea;
+      border-left: 4px solid #ffd873;
+      border-radius: 4px;
+      padding: 1rem;
+      margin: 2rem 0;
+      width: 1200px;
+      font-size: .95rem;
+      color: #555;
+    }
+
+    footer {
+      text-align: center;
+      font-size: .85rem;
+      color: #777;
+      padding: 1rem 0;
+      background: #e2e8f0;
+      width: 1200px;
+      border-radius: 8px;
+    }
+    /* 追加CSS */
+    .book-link {
+        display: block;          
+        text-decoration: none;    
+        color: inherit;          
+    }
+    .book-link:hover article {
+        transform: translateY(-4px);
+    }
+    .book-list {
+        display: flex;
+        gap: 2rem;
+        width: 1200px;
+        margin: 0 auto;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>📚 私のおすすめの本３選</h1>
+  </header>
+
+  <main>
+    <section class="book-list">
+      <!-- 本１：Diary of a Wimpy Kid -->
+      <a href="https://www.poplar.co.jp/wimpykid/" class="book-link" target="_blank" rel="noopener noreferrer">
+        <article>
+          <figure>
+            <img src="https://m.media-amazon.com/images/I/81R2N4PRuUL._SY522_.jpg"
+                 alt="Diary of a Wimpy Kid 表紙">
+          </figure>
+          <div class="content">
+            <h2>『Diary of a Wimpy Kid』<span>Jeff Kinney</span></h2>
+            <p>
+              中学生グレッグ・ヘフリーの日常をユーモラスに綴るイラスト入り日記シリーズ。  
+              英語も平易でリズムよく読めるため、原書入門にも最適です。
+            </p>
+          </div>
+        </article>
+      </a>
+  
+      <!-- 本２：Harry Potter -->
+      <a href="https://warnerbros.co.jp/franchise/wizardingworld/" class="book-link" target="_blank" rel="noopener noreferrer">
+        <article>
+          <figure>
+            <img src="https://images-na.ssl-images-amazon.com/images/I/81YOuOGFCJL.jpg"
+                 alt="Harry Potter and the Philosopher's Stone 表紙">
+          </figure>
+          <div class="content">
+            <h2>『Harry Potter and the Philosopher's Stone』<span>J.K. Rowling</span></h2>
+            <p>
+              孤児の少年ハリーがホグワーツ魔法学校に招かれ、  
+              友情と冒険の中で成長していくファンタジーの金字塔です。
+            </p>
+          </div>
+        </article>
+      </a>
+  
+      <!-- 本３：星新一 -->
+      <a href="https://hoshishinichi.com/" class="book-link" target="_blank" rel="noopener noreferrer">
+        <article>
+          <figure>
+            <img src="https://m.media-amazon.com/images/I/71MnmfRULdL.jpg"
+                 alt="きまぐれロボット（星新一） 表紙">
+          </figure>
+          <div class="content">
+            <h2>『きまぐれロボット』<span>星新一</span></h2>
+            <p>
+              短編SFの名手・星新一によるショートショート集。  
+              シニカルで意外な結末が、ほんの数ページに凝縮されています。
+            </p>
+          </div>
+        </article>
+      </a>
+    </section>
+  
+    <aside class="memo">
+      💭 <strong>読書メモ：</strong>読了後の余韻が、現実をほんの少しだけ優しくしてくれる。
+    </aside>
+  </main>
+  
+
+  <footer>
+    作成者：尾崎仁瑚 | 最終更新：2025年4月
+  </footer>
+
+</body>
+</html>

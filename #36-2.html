@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ToDoリスト</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #6a5acd, #7b68ee);
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .todo-container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      width: 400px;
+    }
+
+    h2 {
+      color: #4a3fc7;
+      text-align: center;
+    }
+
+    .input-section {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .sort-section {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    button {
+      padding: 10px 12px;
+      background-color: #4a3fc7;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      background-color: #f5f9fc;
+      margin-bottom: 10px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-left: 4px solid #4a3fc7;
+    }
+
+    .drag-handle {
+      cursor: grab;
+      margin-right: 10px;
+      font-size: 20px;
+    }
+
+    .task-content {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+
+    .task-text {
+      flex: 1;
+    }
+
+    .delete-btn {
+      color: #ff6b6b;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+  </style>
+
+  <!-- SortableJS -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
+</head>
+<body>
+
+<div class="todo-container">
+  <h2>ToDoリスト</h2>
+
+  <div class="input-section">
+    <input type="text" id="taskInput" placeholder="新しいタスクを入力...">
+    <button class="add" onclick="addTask()">タスク追加</button>
+  </div>
+
+  <div class="sort-section">
+    <button onclick="sortTasksAsc()">🔠 並び替え</button>
+    <button onclick="sortTasksKana()">🈂️ かな順</button>
+  </div>
+
+  <ul id="taskList"></ul>
+</div>
+
+<script>
+  let tasks = [];
+
+  window.onload = function () {
+    const saved = localStorage.getItem("tasks");
+    if (saved) {
+      tasks = JSON.parse(saved);
+      renderTasks();
+    }
+
+    new Sortable(document.getElementById("taskList"), {
+      animation: 150,
+      handle: ".drag-handle",
+      onEnd: function () {
+        const newTasks = [];
+        document.querySelectorAll("#taskList li").forEach(li => {
+          newTasks.push(li.querySelector(".task-text").textContent);
+        });
+        tasks = newTasks;
+        saveAndRender();
+      }
+    });
+  };
+
+  function addTask() {
+    const input = document.getElementById("taskInput");
+    const task = input.value.trim();
+    if (task !== "") {
+      tasks.push(task);
+      saveAndRender();
+      input.value = "";
+    }
+  }
+
+  function deleteTask(index) {
+    tasks.splice(index, 1);
+    saveAndRender();
+  }
+
+  function saveAndRender() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    renderTasks();
+  }
+
+  function renderTasks() {
+    const list = document.getElementById("taskList");
+    list.innerHTML = "";
+    tasks.forEach((task, index) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <div class="task-content">
+          <span class="drag-handle">≡</span>
+          <span class="task-text">${task}</span>
+        </div>
+        <button class="delete-btn" onclick="deleteTask(${index})">削除</button>
+      `;
+      list.appendChild(li);
+    });
+  }
+
+  function sortTasksAsc() {
+    tasks.sort((a, b) => a.localeCompare(b, 'en'));  // 英字順
+    saveAndRender();
+  }
+
+  function sortTasksKana() {
+    tasks.sort((a, b) => a.localeCompare(b, 'ja'));  // かな順（あいうえお）
+    saveAndRender();
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>動的リストの追加・削除</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    #addBtn {
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      color: #fff;
+      background: #4a6cf7;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #addBtn:hover {
+      background: #3b5ad0;
+    }
+    #list {
+      list-style: none;
+      padding: 0;
+      margin-top: 1rem;
+      width: 320px;
+    }
+    .item {
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 1rem;
+    }
+    .item span {
+      font-size: 1rem;
+      color: #333;
+    }
+    .delBtn {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.9rem;
+      color: #fff;
+      background: #e74c3c;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .delBtn:hover {
+      background: #c0392b;
+    }
+  </style>
+</head>
+<body>
+
+  <button id="addBtn">追加</button>
+  <ul id="list"></ul>
+
+  <script>
+    const addBtn = document.getElementById('addBtn');
+    const list   = document.getElementById('list');
+    let counter  = 1;
+
+    addBtn.addEventListener('click', () => {
+      // 新しいリストアイテムを作成
+      const li = document.createElement('li');
+      li.className = 'item';
+
+      // テキスト部分
+      const span = document.createElement('span');
+      span.textContent = `アイテム${counter++}`;
+
+      // 削除ボタン
+      const delBtn = document.createElement('button');
+      delBtn.className = 'delBtn';
+      delBtn.textContent = '削除';
+
+      // 削除機能
+      delBtn.addEventListener('click', () => {
+        list.removeChild(li);
+      });
+
+      // li に子要素を追加してリストへ
+      li.appendChild(span);
+      li.appendChild(delBtn);
+      list.appendChild(li);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ランダムカラーでボックス移動</title>
+  <style>
+    body {
+      height: 100vh;
+      font-family: sans-serif;
+      background: #f7f7f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      display: flex;
+      gap: 1rem;
+    }
+    .box {
+      width: 100px;
+      height: 100px;
+      background: #ddd;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      user-select: none;
+    }
+    .box.active {
+      color: #fff;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="container">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </div>
+
+  <script>
+    const boxes = document.querySelectorAll('.box');
+    let currentIndex = 0;
+    const defaultBg = '#ddd';
+
+    // ランダムカラー生成関数
+    function getRandomColor() {
+      return '#' + Math.floor(Math.random() * 0xFFFFFF)
+                     .toString(16)
+                     .padStart(6, '0');
+    }
+
+    // 初期状態：左端をアクティブにランダムカラーでハイライト
+    boxes[currentIndex].classList.add('active');
+    boxes[currentIndex].style.backgroundColor = getRandomColor();
+
+    window.addEventListener('keydown', e => {
+      let newIndex = currentIndex;
+      if (e.code === 'ArrowRight' && currentIndex < boxes.length - 1) {
+        newIndex++;
+      } else if (e.code === 'ArrowLeft' && currentIndex > 0) {
+        newIndex--;
+      }
+
+      if (newIndex !== currentIndex) {
+        // 以前のボックスをリセット
+        boxes[currentIndex].classList.remove('active');
+        boxes[currentIndex].style.backgroundColor = defaultBg;
+
+        // 新しいボックスをアクティブ＆ランダムカラー
+        currentIndex = newIndex;
+        boxes[currentIndex].classList.add('active');
+        boxes[currentIndex].style.backgroundColor = getRandomColor();
+      }
+    });
+  </script>
+
+</body>
+</html>

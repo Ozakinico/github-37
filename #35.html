@@ -1,0 +1,31 @@
+<h2>プロフィール登録（XSS対策あり）</h2>
+
+<label for="nickname">ニックネーム：</label>
+<input type="text" id="nickname" placeholder="例：さくら">
+
+<label for="bio">自己紹介：</label>
+<textarea id="bio" rows="4" placeholder="例：こんにちは！<b>よろしく</b>お願いします！"></textarea>
+
+<button onclick="showProfile()">表示</button>
+
+<div id="profile">
+  <p id="nameArea"></p>
+  <p id="bioArea"></p>
+</div>
+
+<!-- DOMPurifyのCDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.5/purify.min.js"></script>
+
+<script>
+  function showProfile() {
+    const name = document.getElementById("nickname").value;
+    const bio = document.getElementById("bio").value;
+
+    // ニックネームはテキストとして表示（タグは一切使えない）
+    document.getElementById("nameArea").textContent = name;
+
+    // 自己紹介は<b>と<i>タグのみ許可して表示
+    const safeBio = DOMPurify.sanitize(bio, { ALLOWED_TAGS: ['b', 'i'] });
+    document.getElementById("bioArea").innerHTML = safeBio;
+  }
+</script>

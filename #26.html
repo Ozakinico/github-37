@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>信号機</title>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                height: 100vh;
+                background-color: #f0f0f0;
+                gap: 100px;
+            }
+            #traffic-light {
+                background-color: #333;
+                border-radius: 90px;
+                display: flex;
+                gap: 12px;
+                flex-direction: row;
+                justify-content: space-around;
+                padding: 15px;
+            }
+            .light {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                opacity: 0.3;
+            }
+            .red {
+                background-color: red;
+                opacity: 1;
+            }
+            .yellow {
+                background-color: yellow;
+            }
+            .green {
+                background-color: #00ff00;
+            }
+            button {
+                width: 100px;
+                height: 50px;
+                font-size: 24px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="traffic-light">
+            <div class="light red"></div>
+            <div class="light yellow"></div>
+            <div class="light green"></div>
+        </div>
+        <button id="start">0</button>
+    </body>
+    <script>
+        const count = document.getElementById("start");
+        count.addEventListener("click", () => {
+            let num = parseInt(count.textContent);
+            num++;
+            count.textContent = num;
+        });
+
+        const change = document.getElementById("start");
+        change.addEventListener("click", () => {
+            const lights = document.querySelectorAll(".light");
+            lights.forEach(light => light.style.opacity = 0.3);
+            lights[parseInt(change.textContent) % 3].style.opacity = 1;
+        });
+    </script>
+</html>

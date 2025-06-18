@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>自己紹介</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #f0f4f8;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 2rem;
+      max-width: 360px;
+      text-align: center;
+    }
+    h1 {
+      margin: 0 0 1rem;
+      font-size: 1.8rem;
+    }
+    p {
+      margin: 0 0 2rem;
+      line-height: 1.5;
+      color: #555;
+    }
+    button {
+      padding: 0.6rem 1.2rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      background: #4a90e2;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #3a78c2;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1 id="title"></h1>
+    <p id="content"></p>
+    <button id="switchBtn"></button>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(location.search);
+    const lang = params.get('lang') === 'en' ? 'en' : 'jp';
+
+    const texts = {
+      jp: {
+        title: '自己紹介',
+        content: 'こんにちは！私の名前はにこです。デザインと新しいことを学ぶのが好きです。',
+        btn:   'Switch to English'
+      },
+      en: {
+        title: 'Self Introduction',
+        content: 'Hello! My name is Nico. I like design and learning new things.',
+        btn:   '日本語に切り替える'
+      }
+    };
+
+    const t = texts[lang];
+    document.getElementById('title').textContent   = t.title;
+    document.getElementById('content').textContent = t.content;
+    document.getElementById('switchBtn').textContent = t.btn;
+
+    document.getElementById('switchBtn').addEventListener('click', () => {
+      const targetLang = lang === 'en' ? 'jp' : 'en';
+      location.href = location.pathname + '?lang=' + targetLang;
+    });
+  </script>
+</body>
+</html>

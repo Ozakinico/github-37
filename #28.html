@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>落ち着いた虹色チェンジボタン</title>
+  <style>
+    body {
+      height: 3000px;
+      margin: 0;
+      font-family: sans-serif;
+    }
+    #scrollBtn {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 0.8rem 1.2rem;
+      font-size: 1rem;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+
+      /* 初期色も落ち着かせる */
+      background-color: hsl(240, 50%, 50%);
+      transition: background-color 0.1s;
+    }
+  </style>
+</head>
+<body>
+  <button id="scrollBtn">新しいタブを開く</button>
+
+  <script>
+    const btn = document.getElementById('scrollBtn');
+    btn.addEventListener('click', () => {
+      window.open('https://example.com', '_blank');
+    });
+
+    window.addEventListener('scroll', () => {
+      const docH  = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = Math.min(window.scrollY / docH, 1);
+      const hue   = Math.floor(ratio * 360);
+
+      // 彩度50%、明度50%の落ち着いた設定
+      btn.style.backgroundColor = `hsl(${hue}, 50%, 50%)`;
+    });
+  </script>
+</body>
+</html>

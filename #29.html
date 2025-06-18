@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>画像ロード</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #eceff1;
+    }
+
+    .box {
+      width: 320px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      overflow: hidden;
+      position: relative;
+      transition:
+        width 0.5s ease,
+        height 0.5s ease,
+        background-color 0.5s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .box.loading {
+      width: 400px;
+      height: 300px;
+      background: #f9f9f9;
+    }
+
+    .box.loaded {
+      width: 480px;
+      height: 280px;
+      background: #fff;
+    }
+
+    .box > * {
+      position: absolute;
+      text-align: center;
+      width: 100%;
+    }
+
+    /* ボタン */
+    #loadBtn {
+      position: relative;
+      z-index: 1;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      background: #4a90e2;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    #loadBtn:hover {
+      background: #3a78c2;
+    }
+
+    #spinner {
+      top: 30%;
+      margin: 0 auto;
+      border: 4px solid #e0e0e0;
+      border-top: 4px solid #4a90e2;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      display: none;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    #loadingMsg {
+      top: 65%;
+      color: #555;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    #loadedImage {
+      max-width: 90%;
+      display: none;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="box" id="box">
+    <button id="loadBtn">画像を読み込む</button>
+    <div id="spinner"></div>
+    <p id="loadingMsg">読み込み中…少々お待ちください</p>
+    <img
+      id="loadedImage"
+      src="https://prtimes.jp/i/49229/11/resize/d49229-11-917251-0.jpg"
+      alt="読み込み完了画像"
+    >
+  </div>
+
+  <script>
+    const box        = document.getElementById('box');
+    const btn        = document.getElementById('loadBtn');
+    const spinner    = document.getElementById('spinner');
+    const loadingMsg = document.getElementById('loadingMsg');
+    const img        = document.getElementById('loadedImage');
+
+    btn.addEventListener('click', () => {
+      box.classList.add('loading');
+
+      btn.style.display        = 'none';
+      spinner.style.display    = 'block';
+      loadingMsg.style.display = 'block';
+
+      setTimeout(() => {
+        box.classList.remove('loading');
+        box.classList.add('loaded');
+
+        spinner.style.display    = 'none';
+        loadingMsg.style.display = 'none';
+        img.style.display        = 'block';
+      }, 3000);
+    });
+  </script>
+
+</body>
+</html>
